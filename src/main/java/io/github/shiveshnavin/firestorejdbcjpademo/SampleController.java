@@ -45,14 +45,7 @@ public class SampleController {
     @GetMapping("/view/:id")
     public Product getProd(@PathParam("id") String id){
 
-
         return repo.findById(id).get();
     }
 
-
-    //    @PostConstruct
-    public void test(){
-        List<Product> all = repo.findBypIDAndAmount("abcde",0);
-        System.out.println(all);
-    }
 }
