@@ -4,6 +4,7 @@ package io.github.shiveshnavin.firestorejdbcjpademo;
 import io.github.shiveshnavin.firestore.jdbc.FirestoreJDBCConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,17 +36,24 @@ public class SampleController {
         return p;
     }
 
-    @GetMapping("/delete/:id")
-    public String delProd(@PathParam("id") String id){
+    @GetMapping("/delete/{id}")
+    public String delProd(@PathVariable("id") String id){
 
         repo.deleteById(id);
         return "Deleted";
     }
 
-    @GetMapping("/view/:id")
-    public Product getProd(@PathParam("id") String id){
+    @GetMapping("/view/{id}")
+    public Product getProd(@PathVariable("id") String id){
 
         return repo.findById(id).get();
+    }
+
+
+    @GetMapping("/count")
+    public Long getProd(){
+
+        return repo.count();
     }
 
 }
